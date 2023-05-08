@@ -4,9 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "devStart": "nodemon server.js",
-    "devStartAuth": "nodemon authServer.js",
-    "dev": "concurrently --kill-others \"npm run devStart\" \"npm run devStartAuth\""
+    "dev": "nodemon server.js"
   },
   "keywords": [],
   "author": "",
