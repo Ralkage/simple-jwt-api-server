@@ -16,6 +16,8 @@ app.post("/login", (req, res) => {
   const accessToken = generateAccessToken(user)
   const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET)
 
+  if (username == null) return res.status(401).send("Unauthorized")
+
   refreshTokens.push(refreshToken)
 
   res.json({
@@ -26,7 +28,6 @@ app.post("/login", (req, res) => {
 
 app.post("/refreshToken", (req, res) => {
   const refreshToken = req.body.refresh_token
-	console.log(refreshToken, 'refresth token');
 
   if (refreshToken == null) return res.status(401).send("Unauthorized")
 
