@@ -16,7 +16,9 @@ app.post("/login", (req, res) => {
   const accessToken = generateAccessToken(user)
   const refreshToken = jwt.sign(user, process.env.REFRESH_TOKEN_SECRET)
 
-  if (username == null) return res.status(401).send("Unauthorized")
+  // Check if username is truthy and if not, return a 401 status code.
+  // Ref: https://stackoverflow.com/a/5515349
+  if (!username) return res.status(401).send("Unauthorized")
 
   refreshTokens.push(refreshToken)
 
